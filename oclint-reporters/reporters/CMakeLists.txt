@@ -11,8 +11,14 @@ MACRO(build_dynamic_reporter name)
         )
 
     TARGET_LINK_LIBRARIES(${name}Reporter
-        OCLintCore
+        ${OCLINT_CORE_LIBRARIES}
         )
+
+    INSTALL(TARGETS ${name}Reporter
+	EXPORT OCLintReportersTargets
+	RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
+	LIBRARY DESTINATION "${INSTALL_LIB_DIR}"
+	)
 ENDMACRO(build_dynamic_reporter)
 
 BUILD_DYNAMIC_REPORTER(Text)

@@ -24,3 +24,13 @@ IF (MINGW)
 ELSE()
     ADD_LIBRARY(OCLintMetric ${MetricSource})
 ENDIF()
+
+install(TARGETS OCLintMetric
+  # IMPORTANT: Add the foo library to the "export-set"
+  EXPORT OCLintMetricsTargets
+  ARCHIVE DESTINATION "${INSTALL_LIB_DIR}" COMPONENT lib
+  RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin
+  LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT lib
+)
+
+

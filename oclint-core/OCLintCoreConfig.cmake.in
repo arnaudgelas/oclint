@@ -1,0 +1,17 @@
+# - Config file for the OCLINT_CORE package
+# It defines the following variables
+#  OCLINT_CORE_INCLUDE_DIRS - include directories for OCLINT_CORE
+#  OCLINT_CORE_LIBRARIES    - libraries to link against
+#  OCLINT_CORE_EXECUTABLE   - the bar executable
+ 
+# Compute paths
+get_filename_component(OCLINT_CORE_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(OCLINT_CORE_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+ 
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET OCLintCore AND NOT OCLINT_CORE_BINARY_DIR)
+  include("${OCLINT_CORE_CMAKE_DIR}/OCLintCoreTargets.cmake")
+endif()
+ 
+# These are IMPORTED targets created by OCLINT_CORETargets.cmake
+set(OCLINT_CORE_LIBRARIES OCLintCore OCLintRuleSet)

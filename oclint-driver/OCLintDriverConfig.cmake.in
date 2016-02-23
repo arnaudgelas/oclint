@@ -1,0 +1,17 @@
+# - Config file for the OCLINT_CORE package
+# It defines the following variables
+#  OCLINT_DRIVER_INCLUDE_DIRS - include directories for OCLINT_CORE
+#  OCLINT_DRIVER_LIBRARIES    - libraries to link against
+#  OCLINT_DRIVER_EXECUTABLE   - the bar executable
+ 
+# Compute paths
+get_filename_component(OCLINT_DRIVER_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(OCLINT_DRIVER_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+ 
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET OCLintCore AND NOT OCLINT_DRIVER_BINARY_DIR)
+  include("${OCLINT_DRIVER_CMAKE_DIR}/OCLintDriverTargets.cmake")
+endif()
+ 
+# These are IMPORTED targets created by OCLINT_CORETargets.cmake
+set(OCLINT_DRIVER_LIBRARIES OCLintDriver)

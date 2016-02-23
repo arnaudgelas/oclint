@@ -23,3 +23,12 @@ ADD_LIBRARY(OCLintRuleSet
     RuleSet.cpp
     )
 ENDIF()
+
+install(TARGETS OCLintCore OCLintRuleSet
+  # IMPORTANT: Add the foo library to the "export-set"
+  EXPORT OCLintCoreTargets
+  ARCHIVE DESTINATION "${INSTALL_LIB_DIR}" COMPONENT lib
+  RUNTIME DESTINATION "${INSTALL_BIN_DIR}" COMPONENT bin
+  LIBRARY DESTINATION "${INSTALL_LIB_DIR}" COMPONENT lib
+)
+
